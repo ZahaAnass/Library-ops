@@ -80,10 +80,26 @@ const deleteBook = async (req, res) => {
     }
 }
 
+// @desc    Update book status
+// @route   PATCH /api/books/:id
+const updateBookStatus = async (req, res) => {
+    try {
+        const { status } = req.body
+        const updatedBook = await Book.findByIdAndUpdate(req.params.id, { status }, { new: true })
+        if (!updatedBook) {
+            return res.status(404).json({ message: "Book not found" })
+        }
+        res.status(200).json(updatedBook)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}
+
 module.exports = {
     getAllBooks,
     getBookById,
     createBook,
     updateBook,
-    deleteBook
+    deleteBook,
+    updateBookStatus
 }

@@ -1,0 +1,15 @@
+{
+  "name": "library-ops-root",
+  "version": "1.0.0",
+  "scripts": {
+    "start:all": "concurrently \"npm run start:gateway\" \"npm run start:user\" \"npm run start:book\" \"npm run start:borrow\"",
+    "start:gateway": "cd api-gateway && npm run dev",
+    "start:user": "cd user-service && npm run dev",
+    "start:book": "cd book-service && npm run dev",
+    "start:borrow": "cd borrow-service && npm run dev",
+    "install:all": "cd api-gateway && npm i && cd ../user-service && npm i && cd ../book-service && npm i && cd ../borrow-service && npm i"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
